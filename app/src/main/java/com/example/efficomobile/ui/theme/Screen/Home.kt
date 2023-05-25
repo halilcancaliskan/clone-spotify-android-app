@@ -37,14 +37,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.example.efficomobile.MainActivity
 import com.example.efficomobile.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 
-fun Home(){
+fun Home(navController: NavHostController){
     Scaffold(topBar = {
         TopAppBar(title = { Text(text = "Bonjour") }, actions = {
             IconButton(onClick = { /*TODO*/ }) {
@@ -59,9 +61,9 @@ fun Home(){
                     contentDescription = "Settings"
                 )
             }
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = { navController.navigate("SignUp") }) {
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_param),
+                    painter = painterResource(id = R.drawable.ic_user),
                     contentDescription = "Settings"
                 )
             }
