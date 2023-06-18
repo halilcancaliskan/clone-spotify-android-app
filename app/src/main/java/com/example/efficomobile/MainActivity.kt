@@ -44,6 +44,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.efficomobile.ui.theme.EfficomobileTheme
 import com.example.efficomobile.ui.theme.Screen.Home
+import com.example.efficomobile.ui.theme.Screen.Library
 import com.example.efficomobile.ui.theme.Screen.SignUp
 
 class MainActivity : ComponentActivity() {
@@ -53,7 +54,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navController = rememberNavController()
             NavHost(navController = navController, startDestination = "Home") {
-                composable("Home") { Home(navController) }
+                composable("Home") {
+                    Home(navController)
+                    Library()}
                 composable("SignUp") { SignUp() }
             }
         }

@@ -38,7 +38,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
+
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.efficomobile.MainActivity
@@ -47,30 +47,36 @@ import com.example.efficomobile.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 
-fun Library(navController: NavHostController){
+fun Library(){
     Scaffold(topBar = {
-        TopAppBar(title = {
-            IconButton(onClick = { /*TODO*/ }) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_profile),
-                    contentDescription = "History"
-                )
+        TopAppBar(
+            title = {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_profile),
+                            contentDescription = "Icône de profil"
+                        )
+                    }
+                    Text(text = "Bibliothèque")
+                }
+            },
+            actions = {
+                IconButton(onClick = { /*TODO*/ }) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_loupe),
+                        contentDescription = "zoom"
+                    )
+                }
+                IconButton(onClick = { }) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_plus),
+                        contentDescription = "plus"
+                    )
+                }
             }
-            Text(text = "Bibliothèque") }, actions = {
+        )
 
-            IconButton(onClick = { /*TODO*/ }) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_loupe),
-                    contentDescription = "Settings"
-                )
-            }
-            IconButton(onClick = { navController.navigate("SignUp") }) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_plus),
-                    contentDescription = "Settings"
-                )
-            }
-        })
     }, bottomBar = {
         NavigationBar() {
             NavigationBarItem(selected = true, onClick = { /*TODO*/ }, icon = {
@@ -123,66 +129,67 @@ fun Library(navController: NavHostController){
                 }
             }
 
-        }
-    }
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Start // Aligner les autres éléments à gauche
-    ) {
-        IconButton(onClick = { navController.navigate("SignUp") }) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_trier),
-                contentDescription = "Trier",
-                tint = Color.White
-            )
-        }
-        Text(
-            text = "Récents",
-            color = Color.White
-        )
-        Row(
-            modifier = Modifier.weight(1f),
-            horizontalArrangement = Arrangement.End // Aligner l'icône "lister" à droite
-        ) {
-            IconButton(onClick = { navController.navigate("SignUp") }) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_lister),
-                    contentDescription = "Mode de la liste",
-                    tint = Color.White
-                )
-            }
-        }
-    }
-
-    Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
-        repeat(3) { index ->
-            Row(modifier = Modifier.fillMaxSize()) {
-                // Image
-                AsyncImage(
-                    model = ImageRequest.Builder(LocalContext.current)
-                        .data("https://m.media-amazon.com/images/I/71dFTmV2jgL._SL1440_.jpg")
-                        .build(),
-                    contentDescription = "Poursuivre l'écoute",
-                    modifier = Modifier
-                        .size(120.dp)
-                        .padding(8.dp),
-                    contentScale = ContentScale.Crop
-                )
-                Column(modifier = Modifier.padding(8.dp)) {
-                    Text(
-                        text = "PNL $index",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = Color.White, // Couleur du texte
-                        modifier = Modifier.padding(bottom = 4.dp)
-                    )
-                    Text(
-                        text = "Album . Dans la légende $index",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = Color.White, // Couleur du texte
-                        modifier = Modifier.padding(bottom = 8.dp)
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Start // Aligner les autres éléments à gauche
+            ) {
+                IconButton(onClick = {  }) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_lister),
+                        contentDescription = "Trier",
+                        tint = Color.White
                     )
                 }
+                Text(
+                    text = "Récents",
+                    color = Color.White
+                )
+                Row(
+                    modifier = Modifier.weight(1f),
+                    horizontalArrangement = Arrangement.End // Aligner l'icône "lister" à droite
+                ) {
+                    IconButton(onClick = { }) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_trier),
+                            contentDescription = "Mode de la liste",
+                            tint = Color.White
+                        )
+                    }
+                }
             }
+
+            Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
+                repeat(6) { index ->
+                    Row(modifier = Modifier.fillMaxSize()) {
+                        // Image
+                        AsyncImage(
+                            model = ImageRequest.Builder(LocalContext.current)
+                                .data("https://m.media-amazon.com/images/I/71dFTmV2jgL._SL1440_.jpg")
+                                .build(),
+                            contentDescription = "Poursuivre l'écoute",
+                            modifier = Modifier
+                                .size(120.dp)
+                                .padding(8.dp),
+                            contentScale = ContentScale.Crop
+                        )
+                        Column(modifier = Modifier.padding(8.dp)) {
+                            Text(
+                                text = "PNL $index",
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = Color.White, // Couleur du texte
+                                modifier = Modifier.padding(bottom = 4.dp)
+                            )
+                            Text(
+                                text = "Album . Dans la légende $index",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = Color.White, // Couleur du texte
+                                modifier = Modifier.padding(bottom = 8.dp)
+                            )
+                        }
+                    }
+                }
+            }
+
         }
     }
 }
