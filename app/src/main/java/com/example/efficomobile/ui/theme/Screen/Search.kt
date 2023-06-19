@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
@@ -154,8 +155,11 @@ fun Search() {
             }
 
             Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
-                repeat(6) { index ->
-                    Row(modifier = Modifier.fillMaxSize()) {
+                LazyRow(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    items(2) { index ->
                         // Image
                         AsyncImage(
                             model = ImageRequest.Builder(LocalContext.current)
@@ -163,24 +167,10 @@ fun Search() {
                                 .build(),
                             contentDescription = "Poursuivre l'écoute",
                             modifier = Modifier
-                                .size(120.dp)
+                                .size(186.dp)
                                 .padding(8.dp),
                             contentScale = ContentScale.Crop
                         )
-                        Column(modifier = Modifier.padding(8.dp)) {
-                            Text(
-                                text = "PNL $index",
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = Color.White,
-                                modifier = Modifier.padding(bottom = 4.dp)
-                            )
-                            Text(
-                                text = "Album . Dans la légende $index",
-                                style = MaterialTheme.typography.bodySmall,
-                                color = Color.White,
-                                modifier = Modifier.padding(bottom = 8.dp)
-                            )
-                        }
                     }
                 }
             }
