@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
@@ -43,7 +44,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-import coil.compose.AsyncImage
+import coil.compose.ImagePainter
+import coil.compose.rememberImagePainter
 import coil.request.ImageRequest
 import com.example.efficomobile.MainActivity
 import com.example.efficomobile.R
@@ -154,26 +156,160 @@ fun Search() {
                 }
             }
 
-            Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
+            Column(modifier = Modifier) {
                 LazyRow(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     items(2) { index ->
-                        // Image
-                        AsyncImage(
-                            model = ImageRequest.Builder(LocalContext.current)
-                                .data("https://m.media-amazon.com/images/I/71dFTmV2jgL._SL1440_.jpg")
-                                .build(),
-                            contentDescription = "Poursuivre l'écoute",
+                        Box(
                             modifier = Modifier
-                                .size(186.dp)
-                                .padding(8.dp),
-                            contentScale = ContentScale.Crop
-                        )
+                                .size(width = 186.dp, height = 100.dp)
+                                .padding(8.dp)
+                                .background(Color.Red) // Remplacez Color.Red par votre couleur d'arrière-plan souhaitée
+                        ) {
+                            // Vous pouvez également ajouter du contenu supplémentaire ici si nécessaire
+                        }
                     }
                 }
             }
+
+            Column(modifier = Modifier) {
+                LazyRow(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    items(2) { index ->
+                        Box(
+                            modifier = Modifier
+                                .size(width = 186.dp, height = 100.dp)
+                                .padding(8.dp)
+                                .background(Color.Yellow) // Remplacez Color.Red par votre couleur d'arrière-plan souhaitée
+                        ) {
+                            // Vous pouvez également ajouter du contenu supplémentaire ici si nécessaire
+                        }
+                    }
+                }
+            }
+
+            Column(modifier = Modifier) {
+                LazyRow(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    items(2) { index ->
+                        Box(
+                            modifier = Modifier
+                                .size(width = 186.dp, height = 100.dp)
+                                .padding(8.dp)
+                                .background(Color.Blue) // Remplacez Color.Red par votre couleur d'arrière-plan souhaitée
+                        ) {
+                            // Vous pouvez également ajouter du contenu supplémentaire ici si nécessaire
+                        }
+                    }
+                }
+            }
+
+            Column(modifier = Modifier) {
+                LazyRow(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    items(2) { index ->
+                        Box(
+                            modifier = Modifier
+                                .size(width = 186.dp, height = 100.dp)
+                                .padding(8.dp)
+                                .background(Color.Green) // Remplacez Color.Red par votre couleur d'arrière-plan souhaitée
+                        ) {
+                            // Vous pouvez également ajouter du contenu supplémentaire ici si nécessaire
+                        }
+                    }
+                }
+            }
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.Blue)
+                    .padding(8.dp)
+            ) {
+                LazyRow(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    items(1) { index ->
+                        Row(modifier = Modifier.fillMaxWidth()) {
+                            // Image
+                            Image(
+                                painter = rememberImagePainter(
+                                    data = "https://m.media-amazon.com/images/I/71dFTmV2jgL._SL1440_.jpg",
+                                    builder = {
+                                        crossfade(true)
+                                    }
+                                ),
+                                contentDescription = "Poursuivre l'écoute",
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(width = 55.dp, height = 55.dp)
+                            )
+
+                            // Text
+                            Column(
+                                modifier = Modifier.padding(start = 8.dp)
+                            ) {
+                                Text(
+                                    text = "PNL - Deux frères",
+                                    color = Color.White,
+                                    fontSize = 16.sp,
+                                    textAlign = TextAlign.Center
+                                )
+                                Text(
+                                    text = "Dans la légende",
+                                    color = Color.White,
+                                    fontSize = 12.sp,
+                                    textAlign = TextAlign.Center
+                                )
+                            }
+
+                            IconButton(onClick = { }) {
+                                Icon(
+                                    painter = painterResource(id = R.drawable.ic_fav),
+                                    contentDescription = "Favoris",
+                                    tint = Color.White
+                                )
+                            }
+                            IconButton(onClick = { }) {
+                                Icon(
+                                    painter = painterResource(id = R.drawable.ic_prev),
+                                    contentDescription = "Précédent",
+                                    tint = Color.White
+                                )
+                            }
+                            IconButton(onClick = { }) {
+                                Icon(
+                                    painter = painterResource(id = R.drawable.ic_pause),
+                                    contentDescription = "Pause",
+                                    tint = Color.White
+                                )
+                            }
+
+                            IconButton(onClick = { }) {
+                                Icon(
+                                    painter = painterResource(id = R.drawable.ic_next),
+                                    contentDescription = "Suivant",
+                                    tint = Color.White
+                                )
+                            }
+
+                        }
+                    }
+                }
+            }
+
+
         }
     }
 }
+
+
+
