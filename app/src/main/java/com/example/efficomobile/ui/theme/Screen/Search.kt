@@ -166,9 +166,13 @@ fun Search() {
                             modifier = Modifier
                                 .size(width = 186.dp, height = 100.dp)
                                 .padding(8.dp)
-                                .background(Color.Red) // Remplacez Color.Red par votre couleur d'arrière-plan souhaitée
+                                .background(Color.Red)
                         ) {
-                            // Vous pouvez également ajouter du contenu supplémentaire ici si nécessaire
+                            Text(
+                                text = "Texte sur fond rouge",
+                                color = Color.White,
+                                modifier = Modifier.align(Alignment.Center)
+                            )
                         }
                     }
                 }
@@ -184,9 +188,34 @@ fun Search() {
                             modifier = Modifier
                                 .size(width = 186.dp, height = 100.dp)
                                 .padding(8.dp)
-                                .background(Color.Yellow) // Remplacez Color.Red par votre couleur d'arrière-plan souhaitée
+                                .background(Color.Yellow)
                         ) {
-                            // Vous pouvez également ajouter du contenu supplémentaire ici si nécessaire
+                            Text(
+                                text = "Texte sur fond jaune",
+                                color = Color.Black,
+                                modifier = Modifier.align(Alignment.Center)
+                            )
+                        }
+                    }
+                }
+            }
+            Column(modifier = Modifier) {
+                LazyRow(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    items(2) { index ->
+                        Box(
+                            modifier = Modifier
+                                .size(width = 186.dp, height = 100.dp)
+                                .padding(8.dp)
+                                .background(Color.Blue)
+                        ) {
+                            Text(
+                                text = "Texte sur fond bleu",
+                                color = Color.White,
+                                modifier = Modifier.align(Alignment.Center)
+                            )
                         }
                     }
                 }
@@ -202,31 +231,18 @@ fun Search() {
                             modifier = Modifier
                                 .size(width = 186.dp, height = 100.dp)
                                 .padding(8.dp)
-                                .background(Color.Blue) // Remplacez Color.Red par votre couleur d'arrière-plan souhaitée
+                                .background(Color.Green)
                         ) {
-                            // Vous pouvez également ajouter du contenu supplémentaire ici si nécessaire
+                            Text(
+                                text = "Texte sur fond vert",
+                                color = Color.White,
+                                modifier = Modifier.align(Alignment.Center)
+                            )
                         }
                     }
                 }
             }
 
-            Column(modifier = Modifier) {
-                LazyRow(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    items(2) { index ->
-                        Box(
-                            modifier = Modifier
-                                .size(width = 186.dp, height = 100.dp)
-                                .padding(8.dp)
-                                .background(Color.Green) // Remplacez Color.Red par votre couleur d'arrière-plan souhaitée
-                        ) {
-                            // Vous pouvez également ajouter du contenu supplémentaire ici si nécessaire
-                        }
-                    }
-                }
-            }
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
