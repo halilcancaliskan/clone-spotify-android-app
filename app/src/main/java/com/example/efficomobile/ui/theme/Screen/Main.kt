@@ -4,25 +4,88 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.efficomobile.R
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 
-fun Home() {
+fun Main(navController: NavHostController) {
     val navController = rememberNavController()
-    Scaffold(
+    Scaffold(topBar = {
+        TopAppBar(title = { Text(text = "Bonjour") }, actions = {
+            IconButton(onClick = { /*TODO*/ }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_cloche),
+                    contentDescription = "Alerts"
+                )
+            }
+            IconButton(onClick = { /*TODO*/ }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_history),
+                    contentDescription = "History"
+                )
+            }
+            IconButton(onClick = { navController.navigate("SignUp") }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_user),
+                    contentDescription = "SignUp"
+                )
+            }
+        })
+    }, bottomBar = {
+        NavigationBar() {
+            NavigationBarItem(
+                selected = true,
+                onClick = { navController.navigate("Home") },
+                icon = {
+                    Icon(
+                        painter = painterResource(id = R.drawable.baseline_home_24),
+                        contentDescription = "Home"
+                    )
+                },
+                label = { Text(text = "Home") })
+            NavigationBarItem(
+                selected = false,
+                onClick = { navController.navigate("Search") },
+                icon = {
+                    Icon(
+                        painter = painterResource(id = R.drawable.baseline_search_24),
+                        contentDescription = "Search"
+                    )
+                },
+                label = { Text(text = "Search") })
+            NavigationBarItem(
+                selected = false,
+                onClick = { navController.navigate("Library") },
+                icon = {
+                    Icon(
+                        painter = painterResource(id = R.drawable.baseline_view_headline_24),
+                        contentDescription = "Library"
+                    )
+                },
+                label = { Text(text = "Library") })
 
 
-    ) {
+        }
+
+
+    }) {
         val genre = listOf("Musique", "Podcast", "Vidéo", "Radio", "Live")
 
         NavHost(
@@ -34,7 +97,7 @@ fun Home() {
         )
         {
             composable("Home") {
-                Text(text = "je suis la home ")
+                Home()
             }
             composable("Search") {
                 Search()

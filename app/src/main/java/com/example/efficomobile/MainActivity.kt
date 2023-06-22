@@ -13,6 +13,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.efficomobile.ui.theme.EfficomobileTheme
 import com.example.efficomobile.ui.theme.Screen.Home
+import com.example.efficomobile.ui.theme.Screen.Library
+import com.example.efficomobile.ui.theme.Screen.Main
+import com.example.efficomobile.ui.theme.Screen.Search
 import com.example.efficomobile.ui.theme.Screen.SignUp
 
 class MainActivity : ComponentActivity() {
@@ -21,10 +24,15 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val navController = rememberNavController()
-            NavHost(navController = navController, startDestination = "Home") {
-                composable("Home") {
-                    Home(navController)
+            NavHost(navController = navController, startDestination = "Main") {
+                composable("Main") {
+                    Main(navController)
                     }
+                composable("Home"){
+                    Home()
+                }
+                composable("Search") { Search() }
+                composable("Library") { Library() }
                 composable("SignUp") { SignUp() }
             }
         }
