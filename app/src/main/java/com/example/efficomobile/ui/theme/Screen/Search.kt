@@ -64,7 +64,23 @@ fun Search() {
                                 contentDescription = "Icône de profil"
                             )
                         }
-                        Text(text = "Rechercher")
+                        var searchQuery = remember { mutableStateOf("") }
+
+                        Column(
+                            modifier = Modifier
+                                .padding(1.dp)
+                                .verticalScroll(rememberScrollState())
+
+                        ) {
+                            TextField(
+                                value = searchQuery.value,
+                                onValueChange = { searchQuery.value = it },
+                                placeholder = { Text(text = "Rechercher") },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 16.dp, vertical = 8.dp)
+                            )
+                        }
                     }
                 },
                 actions = {
@@ -81,24 +97,15 @@ fun Search() {
                         )
                     }
                 }
+
             )
         },
+    ) {Column(modifier = Modifier
+        .padding(it)
+        .verticalScroll(rememberScrollState())
+        .background(Color.Black)
     ) {
-        var searchQuery = remember { mutableStateOf("") }
 
-        Column(
-            modifier = Modifier
-                .padding(it)
-                .verticalScroll(rememberScrollState())
-                .background(Color.Black)
-        ) {
-            TextField(
-                value = searchQuery.value,
-                onValueChange = { searchQuery.value = it },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 8.dp)
-            )
 
             Row(
                 verticalAlignment = Alignment.CenterVertically,

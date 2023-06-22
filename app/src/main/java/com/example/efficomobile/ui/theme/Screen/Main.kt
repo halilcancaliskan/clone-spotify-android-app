@@ -27,7 +27,30 @@ import com.example.efficomobile.R
 
 fun Main(navController: NavHostController) {
     val navController = rememberNavController()
-    Scaffold(bottomBar = {
+    Scaffold(topBar = {
+        TopAppBar(title = { Text(text = "Bonjour") }, actions = {
+            IconButton(onClick = { /*TODO*/ }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_cloche),
+                    contentDescription = "Alerts"
+                )
+            }
+            IconButton(onClick = { /*TODO*/ }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_history),
+                    contentDescription = "History"
+                )
+            }
+            IconButton(onClick = {
+                navController.navigate("SignUp")
+            }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_user),
+                    contentDescription = "SignUp"
+                )
+            }
+        })
+    },bottomBar = {
         NavigationBar() {
             NavigationBarItem(
                 selected = true,
@@ -83,7 +106,9 @@ fun Main(navController: NavHostController) {
             }
             composable("Library") {
                 Library()
-
+            }
+            composable("SignUp") {
+                SignUp()
             }
         }
         /*Column(
