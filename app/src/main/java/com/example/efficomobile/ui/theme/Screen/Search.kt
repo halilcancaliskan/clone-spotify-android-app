@@ -83,43 +83,6 @@ fun Search() {
                 }
             )
         },
-        bottomBar = {
-            NavigationBar() {
-                NavigationBarItem(
-                    selected = true,
-                    onClick = { /*TODO*/ },
-                    icon = {
-                        Icon(
-                            painter = painterResource(id = R.drawable.baseline_home_24),
-                            contentDescription = "Home"
-                        )
-                    },
-                    label = { Text(text = "Home") }
-                )
-                NavigationBarItem(
-                    selected = false,
-                    onClick = { /*TODO*/ },
-                    icon = {
-                        Icon(
-                            painter = painterResource(id = R.drawable.baseline_search_24),
-                            contentDescription = "Search"
-                        )
-                    },
-                    label = { Text(text = "Search") }
-                )
-                NavigationBarItem(
-                    selected = false,
-                    onClick = { /*TODO*/ },
-                    icon = {
-                        Icon(
-                            painter = painterResource(id = R.drawable.baseline_view_headline_24),
-                            contentDescription = "Library"
-                        )
-                    },
-                    label = { Text(text = "Library") }
-                )
-            }
-        }
     ) {
         var searchQuery = remember { mutableStateOf("") }
 
