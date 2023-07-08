@@ -33,8 +33,9 @@ class MainActivity : ComponentActivity() {
                 }
                 composable("Search") { Search() }
                 composable("Library") { Library() }
-                composable("SignUp") { SignUp() }
+                composable("SignUp") { SignUp(navController = navController) }
             }
+
         }
     }
 }

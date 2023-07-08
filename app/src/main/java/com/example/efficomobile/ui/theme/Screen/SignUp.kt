@@ -8,17 +8,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
-import androidx.navigation.compose.rememberNavController
+
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignUp() {
-
-    val navController = rememberNavController()
+fun SignUp(navController: NavController) { // Ajoutez le paramètre NavController à votre fonction SignUp
 
     var emailTextFieldValue by remember { mutableStateOf(TextFieldValue("")) }
     var passwordTextFieldValue by remember { mutableStateOf(TextFieldValue("")) }
@@ -52,18 +51,18 @@ fun SignUp() {
                     val password = passwordTextFieldValue.text
 
                     if (email.isNotEmpty() && password.isNotEmpty()) {
-                        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
-                                    // L'utilisateur s'est connecté avec succès
+                                    // L'inscription est réussie
                                     navController.navigate("Home") // Remplacez "Home" par l'ID de votre destination "Home" dans nav_graph.xml
                                 } else {
                                     try {
                                         throw task.exception!!
                                     } catch (e: FirebaseAuthInvalidUserException) {
-                                        // L'utilisateur n'existe pas
+                                        // L'utilisateur existe déjà
                                     } catch (e: FirebaseAuthInvalidCredentialsException) {
-                                        // Mot de passe incorrect
+                                        // Adresse e-mail incorrecte ou mot de passe insuffisamment sécurisé
                                     } catch (e: Exception) {
                                         // Autres erreurs
                                     }
@@ -80,3 +79,4 @@ fun SignUp() {
         }
     }
 }
+

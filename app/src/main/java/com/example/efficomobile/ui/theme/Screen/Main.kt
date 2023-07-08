@@ -108,7 +108,7 @@ fun Main(navController: NavHostController) {
                 Library()
             }
             composable("SignUp") {
-                SignUp()
+                SignUp(navController = navController)
             }
         }
         /*Column(
